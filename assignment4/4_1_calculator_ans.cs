@@ -50,7 +50,7 @@ namespace calculator
     public class Calculator
     {
         // ---------- TODO ----------
-        
+
         // --------------------
     }
 }
