@@ -10,9 +10,40 @@ namespace star
             int radius = int.Parse(Console.ReadLine());
             int size = 2 * (radius + 1);
 
-            // ---------- TODO ----------
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    bool draw = false;
 
-            // --------------------
+
+                    if (
+                        (y == 1 && x >= 2 && x <= size / 2 + 1) ||
+                        (y == size - 2 && x >= 2 && x <= size / 2 + 1) ||
+                        (x == 2 && y >= 1 && y <= size - 2)
+                    )
+                        draw = true;
+
+
+                    int left = size - 4;
+                    int right = size - 1;
+                    int top = size / 3;
+                    int bottom = top + 4;
+
+
+                    if ((x == left || x == right - 1) &&
+                        ((y >= top - 2 && y <= top + 1) || (y >= bottom - 2 && y <= bottom + 1)))
+                        draw = true;
+
+
+                    if ((y == top || y == bottom) &&
+                        x >= left - 1 && x <= right + 2)
+                        draw = true;
+
+                    Console.Write(draw ? '*' : ' ');
+                }
+                Console.WriteLine();
+            }
         }
 
         // calculate the distance between (x1, y1) and (x2, y2)

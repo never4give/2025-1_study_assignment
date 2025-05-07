@@ -49,9 +49,60 @@ namespace calculator
     // Calculator class to perform operations
     public class Calculator
     {
-        // ---------- TODO ----------
+        public double Calculate(double num1, string op, double num2)
+        {
+            switch (op)
+            {
+                case "+":
+                    return num1 + num2;
 
-        // --------------------
+                case "-":
+                    return num1 - num2;
+
+                case "*":
+                    return num1 * num2;
+
+                case "/":
+                    if (num2 == 0)
+                        throw new DivideByZeroException("Division by zero is not allowed");
+                    return num1 / num2;
+
+                case "**":
+                    return Math.Pow(num1, (int)num2);  // num2는 정수라고 가정
+
+                case "%":
+                    return (int)num1 % (int)num2; // 정수 나머지 연산
+
+                case "G":
+                    return GCD((int)num1, (int)num2); // 최대공약수
+
+                case "L":
+                    return LCM((int)num1, (int)num2); // 최소공배수
+
+                default:
+                    throw new InvalidOperationException("Invalid operator");
+            }
+        }
+
+        private int GCD(int a, int b)
+        {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+            while (b != 0)
+            {
+                int temp = a % b;
+                a = b;
+                b = temp;
+            }
+            return a;
+        }
+
+        private int LCM(int a, int b)
+        {
+            a = Math.Abs(a);
+            b = Math.Abs(b);
+            return (a * b) / GCD(a, b);
+        }
     }
 }
 
